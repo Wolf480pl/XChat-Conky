@@ -1,0 +1,81 @@
+# Copyright (c) 2013 Wolf480pl (wolf480@interia.pl)
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy of
+# this software and associated documentation files (the "Software"), to deal in
+# the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+# of the Software, and to permit persons to whom the Software is furnished to do
+# so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+
+# Conky config displaying last 10 lines of XChat scrollback
+
+# Personally I think bottom right corner is the best place for it
+alignment bottom_right
+# A ton of settings I didn't bother to read, just copied them from the default config
+background no
+border_width 1
+cpu_avg_samples 2
+default_color white
+default_outline_color white
+default_shade_color white
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+use_xft yes
+xftfont DejaVu Sans Mono:size=8
+gap_x 5
+gap_y 30
+minimum_size 5 5
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+own_window yes
+# Window class, in case we wanted a window manager to do some fancy tricks with this window.
+own_window_class Conky
+# Window type: normal, so that we are able to move the window holding alt
+own_window_type normal
+# Semi-transparent background
+own_window_argb_visual yes
+own_window_argb_value 128
+own_window_colour 003333
+# Hints for window manager:
+#  above - stay on top
+#  undecorated - we don't want any title bar or frame
+#  skip_taskbar,skip_pager - don't show up on taskbar and in workspace switcher
+own_window_hints above,undecorated,skip_taskbar,skip_pager
+# Use double buffer to avoid flickering
+double_buffer yes
+# Again, a piece of settings just copied from the default config
+stippled_borders 0
+update_interval 1.0
+uppercase no
+use_spacer none
+show_graph_scale no
+show_graph_range no
+
+TEXT
+# Font color. Backslash at the end is to avoid linebreak
+${color 77FF00}\
+# Get the channel topic from XChat, network "bouncer", channel #craftfire, length limit: 110 chars. Use backshash before channel name to escape comment char (#)
+${exec ./xchat-get-topic.sh bouncer \#craftfire 110}
+# Display a nice table header with channel name. Use backshash before channel name to escape comment char (#)
+======================┬======================= \#CraftFire ========================
+# Get last 10 lines of XChat scrollback from network "bouncer" channel #craftfire and prettify it with my prettifier
+# See `man tail' to change the number of displayed lines
+# Prettifier options: line length limit: 110, separator: vertical line and space
+${exec tail ~/.xchat2/scrollback/bouncer/#craftfire.txt |./irc-prettifier.awk -v limit=110 sep="│ "}
