@@ -10,7 +10,9 @@ Requirements
 * Conky
 * XChat
 * DBus
-* basic commandline programs: sh, awk, tail
+* shell compatible with POSIX
+* gawk or other awk compatible with it
+* basic commandline programs (tail, basename, kill, killall, pidof)
 
 Usage
 -------
