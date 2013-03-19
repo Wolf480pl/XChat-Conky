@@ -34,7 +34,7 @@ BEGIN{
 
 {
 	# Get rid of 0x08 and 0x0F characters
-	gsub(/[\x08\x0F]/, "");
+	gsub(/[\x02\x08\x0F]/, "");
 	# Get rid of colorcodes
 	gsub(/\x03[0-9]*/,"");
 	# Match timestamps
