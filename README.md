@@ -7,10 +7,9 @@ This project is licensed under MIT license. Please see LICENSE.txt for details.
 
 Requirements
 ------------
-Conky
-XChat
-/bin/sh
-/usr/bin/awk
+* Conky
+* XChat
+* basic commandline programs: sh, awk, tail
 
 Usage
 -------
