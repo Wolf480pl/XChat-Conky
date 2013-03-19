@@ -9,6 +9,7 @@ Requirements
 ------------
 * Conky
 * XChat
+* DBus
 * basic commandline programs: sh, awk, tail
 
 Usage
