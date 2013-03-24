@@ -34,7 +34,7 @@ if [ "$1" = "-k" ]; then
 fi
 
 if [ "$1" != "-b" ]; then
-    $0 -b &
+    $0 -b > /dev/null &
     exit
 fi
 
@@ -42,7 +42,8 @@ while :
 do
     XCHAT_PID=`pidof xchat`
     if [ "$(pidof xchat)" ] && ! [ "$(ps $XCHAT_PID |grep -i \<defunct\>)" ]; then
-        if [ -z $CONKY_PID ] || ! [ "$(ps $CONKY_PID)" ] || [ "$(ps $CONKY_PID |grep -i \<defunct\>)" ]; then
+#        if [ -z $CONKY_PID ] || ! [ "$(ps $CONKY_PID)" ] || [ "$(ps $CONKY_PID |grep -i \<defunct\>)" ]; then
+        if [ -z $CONKY_PID ] || ! ps $CONKY_PID || ps $CONKY_PID |grep -i \<defunct\>; then
             sleep 2
             conky -c ./conkyrc &
             CONKY_PID=$!

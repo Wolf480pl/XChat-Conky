@@ -31,7 +31,7 @@ default_color 77FF00
 #default_outline_color white
 #draw_outline no
 #default_shade_color white
-#draw_shades yes
+#draw_shades no
 # With XFT fonts look like they should.
 use_xft yes
 # Font to use
